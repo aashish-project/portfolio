@@ -1,5 +1,2 @@
-
-exho "BUILD START"
-python3.10 -m pip install -r requirement.text
-python3.10 manage.py collectsstatic --noimput --clear
-exho "BUILD END"
+pip install -r requirements.txt
+python3.9 manage.py collectstatic --noinput
