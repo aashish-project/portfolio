@@ -1,0 +1,67 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {%tailwind_css%}
+</head>
+<body>
+    <div class="user fade-in">
+        <img src="{{ mod_user.profile.url }}" alt="" srcset="">
+        {% block user %}{% endblock user %}
+    </div>
+    <div class="content">
+        <div class="animation">
+            {% block animation %}{% endblock animation %}
+        </div>
+        
+        
+        <div class="heading">educations</div>
+        <div class="educations block">
+            {% block educations  %}{% endblock educations  %}
+        </div>
+        
+        <div class="heading">about</div>
+        <div class="about block">
+            {% block about %}{% endblock about %}
+        </div>
+
+
+        <div class="heading">internships</div>
+        <div class="internships block">
+            {% block internships %}{% endblock internships %}
+        </div>
+        
+        <div class="heading">projects</div>
+        <div class="projects block">
+            {% block projects %}{% endblock projects %}
+        </div>
+        
+        <div class="heading">academics</div>
+        <div class="academics block">
+            {% block academics %}{% endblock academics %}
+        </div>
+        
+        <div class="heading">links</div>
+        <div class="links block">
+            {% block links %}{% endblock links %}
+        </div>
+        
+        <div class="heading">skills</div>
+        <div class="skills block">
+            {% block skills %}{% endblock skills %}
+        </div>
+        
+    </div>
+</body>
+<script src="{% static 'js/home.js' %}"></script>
+</html>

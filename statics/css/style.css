@@ -1,0 +1,157 @@
+:root{
+   --gray:rgb(209 213 219 );
+   --green:green;
+   --orange:rgb(249 115 22);
+   --red: rgb(239 68 68);
+   --border-radius:10px;
+   --width-bar:50%;
+   --height-bar:20px;
+   --transition:width 3s;
+   --margin-animation-large:0px 22px;
+   --margin-animation-small:0px 12px;
+
+}
+
+*{
+   font-family: 'poppins';
+}
+   ::-webkit-scrollbar {
+      width: 18px;
+   }
+   
+   ::-webkit-scrollbar-track {
+   background-color: var(--gray);
+   }
+
+   ::-webkit-scrollbar-thumb {
+   background-color: var(--green);
+   }
+
+.skill-bar {
+    width: var(--width-bar);
+    height: var(--height-bar);
+    background-color: var(--gray);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  
+  .bar {
+    height: 100%;
+    background-color: var(--green);
+    transition: var(--transition);
+    
+  }
+  .animate{
+   animation: barAnimation 2s linear;
+  }
+  
+ .under_50{
+    background-color: var(--orange);
+ }
+ .under_25{
+    background-color: var(--red);
+ }
+  
+.content{
+   max-width: 900px;
+}
+
+
+.block{
+   opacity: 0;
+   display: grid;
+}
+
+
+.link,.link .link_tag{
+   align-items: center;
+   justify-content: space-between;
+   overflow: hidden;
+}
+
+.link .link_tag a{
+   align-items: center;
+}
+
+.link .link_tag a img{
+   position: absolute;
+   right: 0;
+}
+.fade-in{
+   animation: fade-in 1s forwards;
+}
+
+
+/* animation */
+
+.images img{
+   justify-content: space-between;
+   animation: motionX 2s ease-in-out infinite ;
+}
+
+/* transition */
+
+   
+
+
+
+@keyframes barAnimation {
+   0% {
+      width: 0;
+      background-color: red;
+   }
+   100% {
+      /* background-color: red; */
+   }
+}
+@keyframes fade-in {
+   from{
+      opacity: 0;
+      transform: translateX(-100%);
+   }
+   to{
+      opacity: 1;
+      transform: translateX(0);
+   }
+}
+
+
+@keyframes motionX {
+   0%{
+      margin: 0;
+   }
+   50%{
+      margin: var(--margin-animation-large);
+   }}
+
+@media (max-width:500px) {
+   @keyframes motionX {
+      0%{
+         margin: 0;
+      }
+      50%{
+         margin: var(--margin-animation-small);
+      }
+   }
+}
+
+
+@keyframes color-transition {
+   from{
+
+   }
+   to{
+      background-color: black;
+      color: white;
+   }
+}
+@keyframes color-transition-backword {
+   from{
+      background-color: black;
+      color: var(--gray);
+   }
+   to{
+      background-color: var(--gray);
+      color: black;
+   }
+}

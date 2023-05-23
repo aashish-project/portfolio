@@ -1,0 +1,24 @@
+<form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+    <div class="form-errors">
+        <ul class="errorlist">
+            {% for field_errors in form.errors.values %}
+                {% for error in field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+    <div class="username">
+        {{form.username.label}}
+        {{form.username}}
+    </div>
+    <div class="password">
+        {{form.password.label}}
+        {{form.password}}
+    </div>
+    <button type="submit">Login</button>
+</form>

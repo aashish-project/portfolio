@@ -1,0 +1,125 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}
+  {{user.username}}
+{% endblock title %}
+
+{% comment %} user {% endcomment %}
+
+{% block user %}
+<div class="user-name">
+  <div class="first-name sub-heading">{{mod_user.first_name}}</div>
+  {% if mod_user.last_name %}
+    <div class="second-name sub-heading"> {{mod_user.last_name}} </div>
+  {% endif %}
+</div>
+<div class="phone-number"> {{mod_user.phone_number}} </div>
+<div class="email"> {{mod_user.email}} </div>
+{% endblock user %}
+
+
+{% comment %} links {% endcomment %}
+
+{% block animation %}
+<div class="images flex justify-center">
+  <img src="{%static 'images/1.png' %}" alt="" srcset="" style="width: 50px;">
+    <img src="{%static 'images/2.jpg' %}" alt="" srcset="" style="width: 50px;">
+    <img src="{%static 'images/3.png' %}" alt="" srcset="" style="width: 50px;">
+    <img src="{%static 'images/4.png' %}" alt="" srcset="" style="width: 50px;">
+    <img src="{%static 'images/5.png' %}" alt="" srcset="" style="width: 50px;">
+    <img src="{%static 'images/6.png' %}" alt="" srcset="" style="width: 50px;">
+</div>
+{% endblock animation %}
+
+
+
+{% comment %} educations {% endcomment %}
+
+{% block educations %}
+  {% for edu in educations %}
+  <div class="another_entity">
+    {% for key , value in edu.items %}
+    <div class="entity">
+      <div class="education_label "> {{key}} </div>
+      <div class="education">  {{value}} </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+{% endblock educations %}
+
+{% comment %} about {% endcomment %}
+
+{% block about %}
+  {% for key , value in discription.items %}
+    <div class="about_key sub-heading"> {{key}} </div>
+    <p class="about_value"> {{value}} </p>
+  {% endfor %}
+{% endblock about %}
+
+
+{% comment %} internships {% endcomment %}
+{% block internships %}
+{% for internship in internships %}
+  <div class="parent">
+    {% for key , value in internship.items %}
+    {% if not value == 0 %}
+      <div class="data"> {{value}} </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endfor %}
+{% endblock internships %}
+
+{% comment %} project {% endcomment %}
+
+{% block projects %}
+{% for project in projects %}
+  <div class="parent">
+    {% for key , value in project.items %}
+    {% if key == 'completeness' %}
+      <div class="project_value ">  {{key}} </div>
+      <div class="project_key">{{value}}%</div>
+      {% else %}
+      <div class="project_value ">  {{key}} </div>
+      <div class="project_key">{{value}}</div>
+
+    {% endif %}
+    {% endfor %}
+  </div>
+{% endfor %}
+{% endblock projects %}
+
+
+{% comment %} links  {% endcomment %}
+
+{% block links %}
+  {% for link in links %}
+  <div class="link">
+    <span class="platform">{{link.platform}}</span>
+    <div class="link_tag">
+      <a class="link_a" href="{{link.link}}">{{link.link}}</a>
+    </div>
+      <div class="image"><img src="{{link.url}}" alt="" style="width:60px"></div>
+  </div>
+    {% endfor %}
+{% endblock links %}
+
+{% comment %} skills {% endcomment %}
+
+{% block skills %}
+    {% for key , value in skill.items %}
+    <div class="skills_parent">
+      <span class=" key">{{key}}</span>
+      <div class=" skill-bar">
+        <div
+        class="bar animate"
+        id="{{forloop.counter}}"
+        style="width: calc({{value}}*1%); background-color:{% if value < 25 %}var(--red) {% elif  value < 50%} var(--orange) {% else %}var(--green){% endif %}"
+        ></div>
+      </div>
+    </div>
+    {% endfor %}
+{% endblock skills %}

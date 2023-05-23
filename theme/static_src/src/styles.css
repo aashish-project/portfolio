@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* ... */
+
+  body {
+    @apply mx-2 my-8 sm:my-16; /* Adjust vertical margin for smaller screens */
+  }
+
+
+
+  .heading{
+    @apply text-3xl sm:text-4xl font-bold underline text-green-600 uppercase 
+  }
+  .sub-heading{
+    @apply text-2xl sm:text-3xl font-bold underline text-green-600 uppercase 
+  }
+  .link_a{
+    @apply text-green-700
+  }
+
+
+  
+  .block{
+    @apply my-12
+  }
+  .parent{
+    @apply grid grid-cols-2 px-7 my-3
+  }
+
+  /* ... */
+
+  /* User and Content */
+
+  /* Users */
+  .user {
+    @apply grid justify-center opacity-0 sm:block text-base lg:text-lg lg:mt-10 lg:mr-14 lg:h-full lg:w-1/5 right-0 xl:fixed py-16;
+  }
+  .user img {
+    @apply w-24 sm:w-64 justify-self-center; /* Adjust image width for smaller screens */
+  }
+  .user-name {
+    @apply flex justify-center lg:py-3 tracking-wider; /* Adjust padding for smaller screens */
+  }
+  .user .phone-number,.user .email{
+    @apply justify-self-center
+  }
+
+
+  /* animation */
+  .animation{
+    @apply py-12
+  }
+
+
+  /* About */
+
+  .about {
+    @apply ml-3 sm:ml-5 mt-8 sm:mt-16; /* Adjust margin for smaller screens */
+  }
+
+  /* Educations */
+
+  .entity {
+    @apply grid grid-cols-2 sm:grid-cols-2 gap-4 lg:mx-14; /* Adjust column layout for smaller screens */
+  }
+  .another_entity {
+    @apply border-solid border-green-700 border-x-4 border-y-2;
+  }
+  .another_entity:first-child {
+    @apply border-solid border-green-700 border-t-4;
+  }
+  .another_entity:last-child {
+    @apply border-solid border-green-700 border-b-4;
+  }
+
+
+  /* project */
+
+  .project{
+    @apply grid grid-cols-2 sm:grid-cols-2 gap-4 lg:mx-14;
+  }
+
+  /* Links */
+  .link {
+    @apply flex shadow-lg my-2 sm:my-3; /* Adjust margin for smaller screens */
+  }
+  .platform {
+    @apply uppercase mx-2 sm:mx-3 w-1/4 sm:w-1/5 overflow-hidden; /* Adjust width and margin for smaller screens */
+  }
+  .link_tag {
+    @apply flex w-3/4 sm:w-4/5; /* Adjust width for smaller screens */
+  }
+  .link .link_tag img {
+    @apply ml-6 sm:ml-14 rounded-xl justify-end; /* Adjust margin for smaller screens */
+  }
+
+  /* Skills bar */
+
+  .skills {
+    @apply   mt-8 sm:mt-16 w-full p-7;  /* Adjust margin and width for smaller screens */
+  }
+  .bar {
+    @apply border-solid border-green-800 rounded-xl shadow-xl;
+  }
+  .skills .key {
+    @apply text-xl sm:text-2xl text-black font-bold py-2 px-3 sm:px-4 rounded; /* Adjust font size and padding for smaller screens */
+  }
+  .skills .skill-bar {
+    @apply my-2 sm:my-3 rounded-lg w-full; /* Adjust margin and width for smaller screens */
+  }
+}
