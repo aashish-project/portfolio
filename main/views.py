@@ -6,10 +6,10 @@ from .models import *
 
 
 
-def home(request):
-    if not request.user:
-        return redirect('login')
-    user=request.user
+def home(request,username):
+    user=User.objects.get(username=username)
+    if not user:
+        return HttpResponse("User not exist")
     mod_user=modified_user.objects.get(user=user)
 
 
