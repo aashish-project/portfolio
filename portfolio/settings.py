@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "django_browser_reload",
     'tailwind',
     'theme',
-    'main.custom_filter'
+    'main.custom_filter',
+    'proxy_server',
 ]
 
 

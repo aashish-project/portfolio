@@ -7,6 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
+import random
 
 
 current_year=datetime.now().year
@@ -64,45 +65,53 @@ class Position(models.Model):
         return self.position
 
 class Links(models.Model):
-    platform=models.CharField(name='platform', max_length=500)
-    link=models.URLField(max_length=500)
+    platform = models.CharField(name='platform', max_length=500)
+    link = models.URLField(max_length=500)
+
     def __str__(self):
         return self.platform
+
     class Meta:
         verbose_name_plural = "Links"
 
-
     def get_favicon(self):
-        url=self.link
+        headers = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.57',
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59',
+            'Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1',
+        ]
+
+        url = self.link
         parsed_url = urlparse(url)
-        headers={
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.57'
-        }
-        if(parsed_url.netloc =='auth.geeksforgeeks.org'):
-            parsed_url=urlparse("https://www.geeksforgeeks.org/")
-        url=parsed_url.scheme + '://' + parsed_url.netloc
+        if parsed_url.netloc == 'auth.geeksforgeeks.org':
+            parsed_url = urlparse("https://www.geeksforgeeks.org/")
+        url = parsed_url.scheme + '://' + parsed_url.netloc
 
         try:
-            response = requests.get(url,headers=headers)
+            response = requests.get(url, headers={'User-Agent': headers[random.randrange(0, 5)],'Accept-Encoding':'gzip, deflate, br','Accept':'image/avif,image/webp,*/*'})
+            print(response.request.headers)
             response.raise_for_status()
-            
+
             soup = BeautifulSoup(response.content, "html.parser")
             favicon = soup.find_all('link', rel="icon")
-            favicon = favicon[-1]
-            
-            favicon_url = urlparse(favicon['href'])
-            
-            resp = requests.get(url + favicon_url.path)
-            if resp.status_code == 200:
-                return url + favicon_url.path
-            
-            resp=requests.get(favicon_url)
-            if resp.status_code == 200:
-                return favicon_url
+            if favicon:
+                favicon = favicon[-1]
+                favicon_url = urlparse(favicon['href'])
+
+                resp = requests.get(url + favicon_url.path)
+                if resp.status_code == 200:
+                    return url + favicon_url.path
+
+                resp = requests.get(favicon_url.geturl())
+                if resp.status_code == 200:
+                    return favicon_url.geturl()
+
         except Exception as e:
             print(e)
-  
 
+        return ''
 
     
 
