@@ -38,3 +38,4 @@ tailwind
 text-unidecode
 types-python-dateutil
 urllib3
+django-tailwind
