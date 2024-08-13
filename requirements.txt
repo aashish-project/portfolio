@@ -1,5 +1,3 @@
-//remove versions
-
 arrow
 asgiref
 beautifulsoup4
